@@ -26,3 +26,24 @@ cor(iris[iris$Species==x[2],1:4])
 # Print Virginica correlation matrix
 print(x[3])
 cor(iris[iris$Species==x[3],1:4])
+
+# Division of `Species`
+table(iris$Species) 
+
+# Percentual division of `Species`
+round(prop.table(table(iris$Species)) * 100, digits = 1)
+
+
+
+# Build your own `normalize()` function
+normalize <- function(x) {
+  num <- x - min(x)
+  denom <- max(x) - min(x)
+  return (num/denom)
+}
+
+# Normalize the `iris` data
+iris_norm <- as.data.frame(lapply(iris[1:4], normalize))
+
+# Summarize `iris_norm`
+summary(iris_norm)
