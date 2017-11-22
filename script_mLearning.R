@@ -47,3 +47,36 @@ iris_norm <- as.data.frame(lapply(iris[1:4], normalize))
 
 # Summarize `iris_norm`
 summary(iris_norm)
+
+set.seed(1234)
+ind<-sample(2, nrow(iris), replace = TRUE, prob = c(0.67, 0.33))
+
+# Compose training set
+iris.training <- iris[ind==1, 1:4]
+
+# Inspect training set
+head(iris.training)
+
+# Compose test set
+iris.test <- iris[ind==2, 1:4]
+
+# Inspect test set
+head(iris.test)
+
+# Compose `iris` training labels
+iris.trainLabels <- iris[ind==1,5]
+
+# Inspect result
+print(iris.trainLabels)
+
+# Compose `iris` test labels
+iris.testLabels <- iris[ind==2, 5]
+
+# Inspect result
+print(iris.testLabels)
+
+# Build the model
+iris_pred <- knn(train = iris.training, test = iris.test, cl = iris.trainLabels, k=3)
+
+# Inspect `iris_pred`
+iris_pred
