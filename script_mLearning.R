@@ -80,3 +80,15 @@ iris_pred <- knn(train = iris.training, test = iris.test, cl = iris.trainLabels,
 
 # Inspect `iris_pred`
 iris_pred
+
+# Put `iris.testLabels` in a data frame
+irisTestLabels <- data.frame(iris.testLabels)
+
+# Merge `iris_pred` and `iris.testLabels` 
+merge <- data.frame(iris_pred, iris.testLabels)
+
+# Specify column names for `merge`
+names(merge) <- c("Predicted Species", "Observed Species")
+
+# Inspect `merge` 
+merge
